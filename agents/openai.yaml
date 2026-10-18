@@ -1,0 +1,4 @@
+interface:
+  display_name: "KarmenLoop Task Checkpoint"
+  short_description: "Task Checkpoint with reproducible local checks"
+  default_prompt: "Use $karmen-task-checkpoint to create a resumption checkpoint from this interrupted task ledger."

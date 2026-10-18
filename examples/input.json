@@ -1,0 +1,34 @@
+{
+  "task_id": "task-17",
+  "goal": "Prepare and deliver a report",
+  "events": [
+    {
+      "seq": 1,
+      "action_id": "draft",
+      "state": "planned",
+      "replay_safe": true
+    },
+    {
+      "seq": 2,
+      "action_id": "draft",
+      "state": "dispatched"
+    },
+    {
+      "seq": 3,
+      "action_id": "draft",
+      "state": "completed",
+      "receipt": "report.md"
+    },
+    {
+      "seq": 4,
+      "action_id": "email",
+      "state": "planned",
+      "replay_safe": false
+    },
+    {
+      "seq": 5,
+      "action_id": "email",
+      "state": "dispatched"
+    }
+  ]
+}

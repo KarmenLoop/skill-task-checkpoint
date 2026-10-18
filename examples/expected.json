@@ -1,0 +1,26 @@
+{
+  "task_id": "task-17",
+  "goal": "Prepare and deliver a report",
+  "actions": [
+    {
+      "action_id": "draft",
+      "replay_safe": true,
+      "state": "completed",
+      "last_seq": 3,
+      "receipt": "report.md"
+    },
+    {
+      "action_id": "email",
+      "replay_safe": false,
+      "state": "dispatched",
+      "last_seq": 5
+    }
+  ],
+  "resume_queue": [
+    {
+      "action_id": "email",
+      "next_step": "verify_external_outcome"
+    }
+  ],
+  "sha256": "87a97ce0d2d8e916f7b5cf9077f38f20366dc41b38729aadcc87ea91050130a2"
+}
