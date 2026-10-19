@@ -1,23 +1,23 @@
 # KarmenLoop Task Checkpoint
 
-**Reconstruct interrupted work without blindly repeating uncertain actions.**
+Task Checkpoint saves the state of interrupted work so it can be picked up later. It distinguishes actions that finished from actions whose outcome is still unknown.
 
-Built by **[KarmenLoop](https://github.com/KarmenLoop)**. Reconstruct interrupted work without blindly repeating uncertain actions.
+By [KarmenLoop](https://github.com/KarmenLoop).
 
 [![Release](https://img.shields.io/github/v/release/KarmenLoop/skill-task-checkpoint)](https://github.com/KarmenLoop/skill-task-checkpoint/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](docs/INPUT.md)
 [![Platform](https://img.shields.io/badge/Platform-macOS%20%7C%20Linux%20%7C%20Windows-lightgrey.svg)](docs/COMPATIBILITY.md)
 
-[Download](https://github.com/KarmenLoop/skill-task-checkpoint/releases) · [Quick start](#quick-start) · [Documentation](#documentation) · [Contribute](CONTRIBUTING.md) · [Contact](https://github.com/KarmenLoop/skill-task-checkpoint/issues) · English
+[Download](https://github.com/KarmenLoop/skill-task-checkpoint/releases) · [Quick start](#quick-start) · [Documentation](#documentation) · [Contribute](CONTRIBUTING.md) · [Contact](https://github.com/KarmenLoop/skill-task-checkpoint/issues)
 
-**License:** MIT. Free to use, modify, redistribute, and use commercially with the required copyright and license notice. The included local helper needs no subscription or provider API key.
+The code is [MIT licensed](LICENSE). The local helper needs Python 3.9 or later, with no subscription or provider API key.
 
 ## Introduction
 
-Collect the task objective and ordered action events, including tool receipts. Never treat an intent to call a tool as a successful result. A small transition model rebuilds each action from ordered events. An unmatched dispatch remains unknown; only explicitly replay-safe work is proposed for retry.
+Supply the goal and the ordered action events, including tool receipts. The helper rebuilds each action from that record and creates a checkpoint with a content digest. A dispatched action without a result stays unknown; only work explicitly marked safe to repeat is suggested for retry.
 
-This repository ships one independently installable agent skill, an original deterministic helper, example input, and executable tests. A capable agent handles interpretation and tool selection; the helper performs the repeatable work described below.
+The package includes an agent skill, a local Python helper, example data, and tests. The skill guides the conversation; the helper processes the supplied data.
 
 ## Capabilities
 
@@ -36,7 +36,7 @@ python3 scripts/run.py --input examples/input.json
 python3 -m unittest discover -s tests -v
 ```
 
-The helper returns a structured result. Compare it with [examples/expected.json](examples/expected.json). Read the [field contract](docs/INPUT.md) before supplying your own data. Any documented relative file paths resolve from the process working directory.
+Compare the result with [examples/expected.json](examples/expected.json). For your own data, follow the [input format](docs/INPUT.md). Relative file paths are resolved from the directory where you run the command.
 
 To save a result without overwriting an existing file:
 
@@ -46,18 +46,18 @@ python3 scripts/run.py --input examples/input.json --output result.json
 
 ### Install the agent skill
 
-Choose one host:
+Install it for the agent host you use:
 
 ```sh
 python3 install.py --host codex
 # Alternatives: --host deepseek, --host grok, or --host agents
 ```
 
-The installer copies this skill into the selected user's skill directory and refuses an existing destination. It does not change host settings, permissions, credentials, or other skills. Use --destination with an exact new directory for a custom installation.
+The installer copies the skill into your host's skill directory. It stops if that directory already exists. To choose another location, pass `--destination` with a new directory. Host settings, credentials, permissions, and other skills are left alone.
 
 In Codex, invoke $karmen-task-checkpoint. In Grok Build, invoke /karmen-task-checkpoint. In another compatible host, select the installed skill by name. Example request:
 
-> Create a resumption checkpoint from this interrupted task ledger.
+> Make a checkpoint and tell me what needs checking before I resume.
 
 Refresh your host's skill discovery if needed. See [compatibility and its verification limits](docs/COMPATIBILITY.md).
 
@@ -65,7 +65,7 @@ Refresh your host's skill discovery if needed. See [compatibility and its verifi
 
 A small transition model rebuilds each action from ordered events. An unmatched dispatch remains unknown; only explicitly replay-safe work is proposed for retry.
 
-JSON results can be inspected, archived, or passed to another tool. The helper never interprets input as a shell command. Exit code 0 means processing completed; findings may still require action. Exit code 2 means invalid input or a filesystem error. Existing output files are preserved.
+The result is JSON, so you can save it or pass it to another tool. Exit code `0` means the helper finished, even when its findings need attention. Exit code `2` means the input or a file operation failed. The helper does not run shell commands from the input or overwrite an existing output file.
 
 ## Documentation
 
