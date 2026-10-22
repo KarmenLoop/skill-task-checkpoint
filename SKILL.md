@@ -3,7 +3,7 @@ name: karmen-task-checkpoint
 description: "Reconstruct interrupted work without blindly repeating uncertain actions. Use when a long task must be handed off, paused, or resumed after interruption."
 metadata:
   author: KarmenLoop
-  version: "0.2.0"
+  version: "0.2.1"
 ---
 
 # Task Checkpoint
