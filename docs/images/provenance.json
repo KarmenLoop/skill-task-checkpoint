@@ -1,0 +1,14 @@
+{
+  "version": "0.2.1",
+  "kind": "rendered actual JSON output, not an application screenshot",
+  "command": "python3 scripts/run.py --input examples/input.json",
+  "stdout_sha256": "34c3083288b9211fd12340cbe885218b0c3ae7ebc26c928037e0d3aae73fc01b",
+  "files": {
+    "scripts/run.py": "32e98caacb89d942fd79cc93e13840927bfd507feff6d20edc7bb93e390d060b",
+    "scripts/runtime.py": "b4bef3d8c44ac2529e9afff0576e6186470120f1b56cc8cfabe3d4e98ad22601",
+    "skill.json": "4f5800293bb2e9804df75ed30c9a9515357d424b70caec69d680878ffc9f7171",
+    "examples/input.json": "74d28e44d2b3733e7b9d9f365188b2342f0b65cead595567160e45ed8c9d9092",
+    "examples/expected.json": "34c3083288b9211fd12340cbe885218b0c3ae7ebc26c928037e0d3aae73fc01b",
+    "docs/images/example-output-v0.2.1.svg": "f8994a3a8ff63a46c7164d302cbeef459cc9cea541763504c78392538961b6ae"
+  }
+}
